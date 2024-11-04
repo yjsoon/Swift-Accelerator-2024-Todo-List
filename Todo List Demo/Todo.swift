@@ -10,5 +10,6 @@ import SwiftUI
 struct Todo: Identifiable {
     var id = UUID()
     var name: String
+    var subtitle = ""
     var done = false
 }
