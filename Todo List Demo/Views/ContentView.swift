@@ -21,23 +21,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List($todos, editActions: [.all]) { $todo in
-                NavigationLink {
-                    TodoDetailView(todo: $todo)
-                } label: {
-                    HStack {
-                        Image(systemName: todo.done ? "checkmark.circle.fill" : "circle")
-                            .onTapGesture {
-                                todo.done.toggle()
-                            }
-                        VStack(alignment: .leading) {
-                            Text(todo.name)
-                            if !todo.subtitle.isEmpty {
-                                Text(todo.subtitle)
-                                    .font(.caption)
-                            }
-                        }
-                    }
-                }
+                TodoRowView(todo: $todo)
             }
             .navigationTitle("Todos")
             .toolbar {
@@ -61,3 +45,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
