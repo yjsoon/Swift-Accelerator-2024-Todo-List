@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var todos = [
-        Todo(name: "Learn SwiftUI"),
+        Todo(name: "Learn SwiftUI", done: true),
         Todo(name: "Build an iOS app"),
         Todo(name: "Learn SwiftUI again"),
         Todo(name: "Build an iOS app again"),
@@ -18,8 +18,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            List(todos) { todo in
-                Text(todo.name)
+            List($todos) { $todo in
+                HStack {
+                    Image(systemName: todo.done ? "checkmark.circle.fill" : "circle")
+                        .onTapGesture {
+                            todo.done.toggle()
+                        }
+                    Text(todo.name)
+                }
             }
             .navigationTitle("Todos")
         }
